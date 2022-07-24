@@ -69,13 +69,13 @@ fs.readFile('./db/db.json', 'utf8', (err, data) => {
        let parsedNotes = JSON.parse(data)
 
        parsedNotes.push(newNote);
-       
+
         noteData = parsedNotes;
         
 
        fs.writeFile(
         './db/db.json',
-        JSON.stringify(noteData, null, 4),
+        JSON.stringify(noteData),
         (writeErr) =>
           writeErr
             ? console.error(writeErr)
