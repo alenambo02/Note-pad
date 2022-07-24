@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const uuid = require('./helpers/uuid');
-// var noteData = require('./db/db.json');
+var noteData = require('./db/db.json');
 // const fs = require('fs');
 
 const PORT = process.env.PORT || 3002;
@@ -69,6 +69,7 @@ fs.readFile('./db/db.json', 'utf8', (err, data) => {
        let parsedNotes = JSON.parse(data)
 
        parsedNotes.push(newNote);
+       
         noteData = parsedNotes;
         
 
