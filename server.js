@@ -1,11 +1,11 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
-const noteData = require('./db/db.json');
+const uuid = require('./helpers/uuid');
+// var noteData = require('./db/db.json');
 // const fs = require('fs');
 
-const PORT = 3002;
+const PORT = process.env.PORT || 3002;
 const app = express();
 
 
@@ -34,32 +34,31 @@ app.get('/api/notes', (req, res) => {
 });
 
 //GET request for specific note
-app.get('/api/notes/:note_id', (req, res) => {
-    if (req.body && req.params.noteData_id) {
-        console.info(`${req.method} request recieved for single note`);
-        const noteId = req.params.noteData_id;
-        for(let i = 0; i < noteData.length; i++){
-            const currentNote = noteData[i];
-            if(currentNote.noteData_id === noteId){
-                res.json(currentNote);
-                return;
-            }
-        }
-        res.json('Note not found');
-    }
-});
-
+// app.get('/api/notes/:id', (req, res) => {
+//     if (req.body && req.params.noteData_id) {
+//         console.info(`${req.method} request recieved for single note`);
+//         const noteId = req.params.noteData_id;
+//         for(let i = 0; i < noteData.length; i++){
+//             const currentNote = noteData[i];
+//             if(currentNote.noteData_id === noteId){
+//                 res.json(currentNote);
+//                 return;
+//             }
+//         }
+//         res.json('Note not found');
+//     }
+// });
 
 app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received to add a note`); 
-
+    var noteData;
 const { title, text } = req.body;
 
 if (title && text) {
     const newNote = {
         title,
         text,
-        noteData_id: { v4: uuidv4 },
+        noteData_id: uuid(),
 
     };
 
@@ -67,14 +66,15 @@ fs.readFile('./db/db.json', 'utf8', (err, data) => {
     if (err) {
         console.error(err);
     } else {
-       const parsedNotes = JSON.parse(data)
+       let parsedNotes = JSON.parse(data)
 
        parsedNotes.push(newNote);
-       noteData = parsedNotes;
+        noteData = parsedNotes;
+        
 
        fs.writeFile(
         './db/db.json',
-        JSON.stringify(parsedNotes, null, 4),
+        JSON.stringify(noteData, null, 4),
         (writeErr) =>
           writeErr
             ? console.error(writeErr)
@@ -88,7 +88,7 @@ fs.readFile('./db/db.json', 'utf8', (err, data) => {
         };
 
         console.log(response);
-        res.json(response);
+        res.send(noteData);
         } else {
         res.json('Error in posting review');
 
@@ -108,7 +108,3 @@ app.listen(PORT, () =>
 
 
 
-// (err, data) => {
-//     if (err) {
-//       console.error(err);
-//     } else {
