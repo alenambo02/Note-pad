@@ -30,7 +30,7 @@ app.get('/api/notes', (req, res) => {
     console.log(noteData);
     res.json(noteData);
 
-    console.info(`${req.method} request received to get notes`);
+    // console.info(`${req.method} request received to get notes`);
 });
 
 //GET request for specific note
@@ -51,38 +51,25 @@ app.get('/api/notes', (req, res) => {
 
 app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received to add a note`); 
-    var noteData;
-const { title, text } = req.body;
+    // var noteData;
+    const { title, text } = req.body;
 
-if (title && text) {
+    if (title && text) {
     const newNote = {
         title,
         text,
-        noteData_id: uuid(),
+        id: uuid(),
 
     };
-
-fs.readFile('./db/db.json', 'utf8', (err, data) => {
-    if (err) {
-        console.error(err);
-    } else {
-       let parsedNotes = JSON.parse(data)
-
-       parsedNotes.push(newNote);
-
-        noteData = parsedNotes;
-        
-
-       fs.writeFile(
-        './db/db.json',
-        JSON.stringify(noteData),
-        (writeErr) =>
-          writeErr
-            ? console.error(writeErr)
-            : console.info('Successfully updated notes!')
-       );
-    }
-});
+    noteData.push(newNote);
+    fs.writeFile('./db/db.json',JSON.stringify(noteData, null, 4),
+            (writeErr) =>
+            writeErr
+                ? console.error(writeErr)
+                : console.info('Successfully updated notes!')
+        );
+        }
+})
         const response = {
             status: 'success',
             body: newNote,
@@ -90,11 +77,7 @@ fs.readFile('./db/db.json', 'utf8', (err, data) => {
 
         console.log(response);
         res.send(noteData);
-        } else {
-        res.json('Error in posting review');
-
-    }
-});
+    
 
 // app.delete()
 
@@ -109,3 +92,11 @@ app.listen(PORT, () =>
 
 
 
+// fs.readFile('./db/db.json', 'utf8', (err, data) => {
+//     if (err) {
+//         console.error(err);
+//     } else {
+//        let parsedNotes = JSON.parse(data)
+
+//        parsedNotes.push(newNote);
+//        noteData = parsedNotes;
