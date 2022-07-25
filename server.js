@@ -53,7 +53,7 @@ app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received to add a note`); 
     // var noteData;
     const { title, text } = req.body;
-    var noteData;
+   
     if (title && text) {
     const newNote = {
         title,
@@ -61,39 +61,28 @@ app.post('/api/notes', (req, res) => {
         id: uuid(),
 
     };
-    fs.readFile('./db/db.json', 'utf8', (err, data) => {
-      if (err) {
-          console.error(err);
-      } else {
-         let parsedNotes = JSON.parse(data)
+    // fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    //   if (err) {
+    //       console.error(err);
+    //   } else {
+    //      let parsedNotes = JSON.parse(data)
   
-         parsedNotes.push(newNote);
+    //      parsedNotes.push(newNote);
   
-          noteData = parsedNotes;
-          
+    //       noteData = parsedNotes;
+    noteData.push(newNote); 
   
-         fs.writeFile(
-          './db/db.json',
-          JSON.stringify(noteData),
-          (writeErr) =>
-            writeErr
-              ? console.error(writeErr)
-              : console.info('Successfully updated notes!')
-         );
-      }
+      fs.writeFile('./db/db.json',
+      JSON.stringify(noteData),
+      (writeErr) => writeErr ? console.error(writeErr)
+      : console.info('Successfully updated notes!')
+      );
+    }
   });
-          const response = {
-              status: 'success',
-              body: newNote,
-          };
   
           console.log(response);
           res.send(noteData);
-          } else {
-          res.json('Error in posting review');
-  
-      }
-  });
+        
     
 
 // app.delete()
