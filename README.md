@@ -11,28 +11,22 @@
 -[contact](#Contact)
 
 ## Description:
-The purpose behind this project was to create a note taking application that 
+The purpose behind this project was to create a note taking application were the user can write and save the notes they write to. When the user first enter the note application they will be displayed with a landing page. Inside the landing page the user will be displayed with a 'Get Started' button that will navigate the user to the main page that allows you to create and save notes. 
 
 You can see the note taking app layout below:
 
 ![alt text](./assets/  )
 
 ## Installation:
-In order to be able to utilize this generator within your command line, you would have to install node.js, npm inquirer package, and jest. Npm inquirer package allows for prompts to be displayed to you within the command line. For this project, I utilized jest to test my code, therefore if I later make changes to my code I can do it with ease. I will be able to see were my code is breaking and have a better understanding of what to fix. 
-
-Below, I have displayed how I utilized inquirer to prompt questions within the command line:
-
-![alt text](./assets/prompts%20for%20profile.png)
-
-Below, I have displayed how I utilized jest to test my code within the command line:
-
-![alt text](./assets/  )
+In order to be able to utilize this note taking application you can access it through the following link:
 
 
 ## Usage:
-You will be prompted with questions inside the command line to help you generate your team. You can either answer the question or leave it blank to move on to the next question. Your answers to the questions will then be generated below the correct section of employee type you choose to create. Once you are done adding team members to your template a html file will be generated for you. Once this is opened on the browser you will be displayed with cards of each team member you added. This design was done utilizing bootstrap. 
+When the user first enter the note application they will be displayed with a landing page. Inside the landing page the user will be displayed with a 'Get Started' button that will navigate the user to the main page that allows you to create and save notes. The user will be able to view their saved notes on the left side of the application and create a new note on the right side with the ability to save it. 
 
-Here you can see how I have used switch statements to create the employee choosen:
+![alt text](./assets/  )
+
+Here you can view a code snippet were I utilized express app.delete function to remove a note a no longer needed: 
 ```
 code snippet
 

@@ -5,7 +5,7 @@ const uuid = require('./helpers/uuid');
 var noteData = require('./db/db.json');
 // const fs = require('fs');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 
@@ -47,6 +47,32 @@ app.post('/api/notes', (req, res) => {
         id: uuid(),
 
     };
+
+    noteData.push(newNote); 
+  
+    fs.writeFile('./db/db.json',
+    JSON.stringify(noteData),
+    (writeErr) => writeErr ? console.error(writeErr)
+    : console.info('Successfully updated notes!'));
+    res.send(noteData);
+    }
+});
+
+app.delete('/api/notes:id', (req, res) => {
+const { id } = req.params;
+const deleted = 
+
+});
+
+app.listen(PORT, () =>
+  console.log(`App listening at http://localhost:${PORT}`)
+);
+
+
+
+
+
+
   
     // fs.readFile('./db/db.json', 'utf8', (err, data) => {
     //   if (err) {
@@ -58,27 +84,3 @@ app.post('/api/notes', (req, res) => {
   
     //       noteData = parsedNotes;
     
-    noteData.push(newNote); 
-  
-      fs.writeFile('./db/db.json',
-      JSON.stringify(noteData),
-      (writeErr) => writeErr ? console.error(writeErr)
-      : console.info('Successfully updated notes!')
-      );
-      res.send(noteData);
-  }
-  });
-
-app.delete()
-
-
-
-app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT}`)
-);
-
-
-
-
-
-
