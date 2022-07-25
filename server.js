@@ -30,24 +30,10 @@ app.get('/api/notes', (req, res) => {
     console.log(noteData);
     res.json(noteData);
 
-    // console.info(`${req.method} request received to get notes`);
+    console.info(`${req.method} request received to get notes`);
 });
 
-//GET request for specific note
-// app.get('/api/notes/:id', (req, res) => {
-//     if (req.body && req.params.noteData_id) {
-//         console.info(`${req.method} request recieved for single note`);
-//         const noteId = req.params.noteData_id;
-//         for(let i = 0; i < noteData.length; i++){
-//             const currentNote = noteData[i];
-//             if(currentNote.noteData_id === noteId){
-//                 res.json(currentNote);
-//                 return;
-//             }
-//         }
-//         res.json('Note not found');
-//     }
-// });
+
 
 app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received to add a note`); 
@@ -61,6 +47,7 @@ app.post('/api/notes', (req, res) => {
         id: uuid(),
 
     };
+  
     // fs.readFile('./db/db.json', 'utf8', (err, data) => {
     //   if (err) {
     //       console.error(err);
@@ -70,6 +57,7 @@ app.post('/api/notes', (req, res) => {
     //      parsedNotes.push(newNote);
   
     //       noteData = parsedNotes;
+    
     noteData.push(newNote); 
   
       fs.writeFile('./db/db.json',
@@ -77,15 +65,11 @@ app.post('/api/notes', (req, res) => {
       (writeErr) => writeErr ? console.error(writeErr)
       : console.info('Successfully updated notes!')
       );
-    }
+      res.send(noteData);
+  }
   });
-  
-          console.log(response);
-          res.send(noteData);
-        
-    
 
-// app.delete()
+app.delete()
 
 
 
