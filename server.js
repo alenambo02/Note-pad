@@ -58,10 +58,19 @@ app.post('/api/notes', (req, res) => {
     }
 });
 
-app.delete('/api/notes:id', (req, res) => {
+app.delete('/api/notes/:id', (req, res) => {
 const { id } = req.params;
-const deleted = 
-
+const deleted = noteData.find(noteData => noteData.id === id);
+if(deleted) {
+  console.log(deleted); 
+  noteData = noteData.filter(noteData => noteData.id !== id);
+  res.status(200).json(deleted);
+  } else {
+    console.log(deleted);
+    res
+      .status(404)
+      .json({message: "Note has been deleted"});
+  }
 });
 
 app.listen(PORT, () =>
@@ -70,6 +79,13 @@ app.listen(PORT, () =>
 
 
 
+
+// fs.writeFile('./db/db.json',
+// JSON.stringify(noteData),
+// (writeErr) => writeErr ? console.error(writeErr)
+// : console.info('Successfully updated notes!'));
+// res.json({});
+// }
 
 
 
