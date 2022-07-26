@@ -79,24 +79,3 @@ app.listen(PORT, () =>
 
 
 
-
-// fs.writeFile('./db/db.json',
-// JSON.stringify(noteData),
-// (writeErr) => writeErr ? console.error(writeErr)
-// : console.info('Successfully updated notes!'));
-// res.json({});
-// }
-
-
-
-  
-    // fs.readFile('./db/db.json', 'utf8', (err, data) => {
-    //   if (err) {
-    //       console.error(err);
-    //   } else {
-    //      let parsedNotes = JSON.parse(data)
-  
-    //      parsedNotes.push(newNote);
-  
-    //       noteData = parsedNotes;
-    

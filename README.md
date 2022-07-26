@@ -15,16 +15,18 @@ The purpose behind this project was to create a note taking application were the
 
 You can see the note taking app layout below:
 
-![alt text](./assets/  )
+![api gif](./assets/notesgif.gif)
 
 ## Installation:
 In order to be able to utilize this note taking application you can access it through the following link:
+
+https://afternoon-waters-94730.herokuapp.com/
 
 
 ## Usage:
 When the user first enter the note application they will be displayed with a landing page. Inside the landing page the user will be displayed with a 'Get Started' button that will navigate the user to the main page that allows you to create and save notes. The user will be able to view their saved notes on the left side of the application and create a new note on the right side with the ability to save it. 
 
-![alt text](./assets/  )
+![alt text](./assets/deletemethod.png)
 
 Here you can view a code snippet were I utilized express app.delete function to remove a note a no longer needed: 
 ```
